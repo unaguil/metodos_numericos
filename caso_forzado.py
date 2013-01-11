@@ -9,8 +9,8 @@ def f(x, y, t):
 	return y
 
 def g(x, y, t):
-	return -x
+	return math.cos(t) - x
 
 h = 0.01
 num_periodos = 5
-graficas.mostrar_graficas(h, num_periodos, f, g, 1.0, 0.0, 0.0, 'oscilador lineal no forzado ni amortiguado')
+graficas.mostrar_graficas(h, num_periodos, f, g, 1.0, 0.0, 0.0, 'oscilador lineal forzado no amortiguado')
