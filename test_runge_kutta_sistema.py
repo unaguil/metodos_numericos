@@ -1,5 +1,8 @@
+# -*- coding: utf8 -*- 
+
 from metodos import eq_diferenciales
 import math
+import matplotlib.pyplot as plt
 
 def f(x, y, t):
 	return y
@@ -7,19 +10,18 @@ def f(x, y, t):
 def g(x, y, t):
 	return -x
 
-def lanzar_metodo():
-	h = 0.01
-	periodo = 2.0 * math.pi 
-	n = int(1 * periodo / h)
-	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, 1.0, 0.0, 0.0)
+h = 0.05
+periodo = 2.0 * math.pi 
+n = int(1 * periodo / h)
+sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, 1.0, 0.0, 0.0)
 
-	sol_analitica = []
-	for t, _, _ in sol_numerica:
-		sol_analitica.append(math.cos(t))
+tiempo = []
+numerica = []
+analitica = []
+for t, x, _ in sol_numerica:
+	tiempo.append(t)
+	numerica.append(x)
 
-	file = open('test.dat', 'w')
-	for i, ((t, x_n, _), x_a) in enumerate(zip(sol_numerica, sol_analitica)):
-		file.write('%.2f \t %.6f \t %.6f \t %.6f\n' % (t, x_n, x_a, x_n - x_a))
-	file.close()
+plt.plot(tiempo, numerica, label='Solución numérica')
 
-lanzar_metodo()
+plt.show()
