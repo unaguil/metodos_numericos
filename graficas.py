@@ -35,7 +35,9 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 		espectro_potencia.append(p)
 
 	n = range(len(espectro_potencia))
-	plt.plot(n, espectro_potencia)
+	max = 50
+	plt.plot(n[:max], espectro_potencia[:max], 'b,')
+	plt.vlines(n[:max], [0], espectro_potencia[:50])
 	plt.title('Espectro de potencia del %s' % titulo)
 	plt.xlabel('Componentes')
 	plt.ylabel('Potencia')
