@@ -2,8 +2,6 @@ import cmath
 
 def tfd(x):
 	N = len(x)
-	print 'Calculando Tranformada de Fourier Discreta para %s elementos' % N
-
 	espectro_freq = []
 	for n in range(N):
 		c = 0
