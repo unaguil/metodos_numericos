@@ -32,13 +32,20 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
 	x = x_0
 	y = y_0
 
+	tabla = [(t, x, y)]
+
 	for i in range(n + 1):
 		kx1, kx2, kx3, kx4 = calcular_estimaciones(h, f, x, y, t, verbose)
 		ky1, ky2, ky3, ky4 = calcular_estimaciones(h, g, x, y, t, verbose)
 
 		x = x + (kx1 + 2 * kx2 + 2 * kx3 + kx4) / 6
 		y = y + (ky1 + 2 * ky2 + 2 * ky3 + ky4) / 6
-
 		t += h
 
-	return t, x, y
+		tabla.append((t, x, y))
+
+	return tabla
+
+def mostrar_tabla(tabla):
+	for t, x, y in tabla:
+		print "%.5f \t %.5f \t %.5f" % (t, x, y)
