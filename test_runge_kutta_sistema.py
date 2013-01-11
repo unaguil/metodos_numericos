@@ -10,7 +10,7 @@ def g(x, y, t):
 def lanzar_metodo():
 	h = 0.01
 	periodo = 2.0 * math.pi 
-	n = int(50 * periodo / h)
+	n = int(1 * periodo / h)
 	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, 1.0, 0.0, 0.0)
 
 	sol_analitica = []
