@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*- 
 
 def runge_kutta(h, n, f, x_0, y_0, verbose=False):
 	x = x_0
