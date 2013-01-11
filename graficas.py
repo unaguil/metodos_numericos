@@ -42,5 +42,6 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 	plt.vlines(n[:max], [0], espectro_potencia[:max], 'b')
 	plt.title('Espectro de potencia del %s' % titulo)
 	plt.xlabel('Frecuencias')
+	plt.xticks(n[:max])
 	plt.ylabel('Potencia')
 	plt.show()
