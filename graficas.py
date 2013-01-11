@@ -6,6 +6,8 @@ import math
 from metodos import eq_diferenciales
 from metodos import transformada_fourier
 
+from numpy import fft
+
 def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 	periodo = 2.0 * math.pi 
 	n = int(num_periodos * periodo / h)
@@ -20,14 +22,14 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 
 	plt.plot(tiempo, numerica, label='Solución numérica')
 	plt.title('Movimiento del %s' % titulo)
-	plt.xlabel('t [rad]')
-	plt.ylabel('x')
+	plt.xlabel('Tiempo [rad]')
+	plt.ylabel('x(t)')
 	plt.show()
 
 	plt.clf()
 
 	x = [x for _, x, y in sol_numerica]
-	trans_fourier = transformada_fourier.tfd(x)
+	trans_fourier = fft.fft(x)
 
 	espectro_potencia = []
 	for c in trans_fourier:
@@ -35,10 +37,10 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 		espectro_potencia.append(p)
 
 	n = range(len(espectro_potencia))
-	max = 50
+	max = 20
 	plt.plot(n[:max], espectro_potencia[:max], 'b,')
-	plt.vlines(n[:max], [0], espectro_potencia[:50])
+	plt.vlines(n[:max], [0], espectro_potencia[:max], 'b')
 	plt.title('Espectro de potencia del %s' % titulo)
-	plt.xlabel('Componentes')
+	plt.xlabel('Frecuencias')
 	plt.ylabel('Potencia')
 	plt.show()
