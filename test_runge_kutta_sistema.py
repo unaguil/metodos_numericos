@@ -1,4 +1,4 @@
-import eq_diferenciales
+from metodos import eq_diferenciales
 import math
 
 def f(x, y, t):

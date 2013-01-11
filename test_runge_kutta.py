@@ -1,4 +1,4 @@
-import eq_diferenciales
+from metodos import eq_diferenciales
 
 def dy_dx(x, y):
 	return -2 * x -y
