@@ -13,4 +13,7 @@ def g(x, y, t):
 
 h = 0.01
 num_periodos = 5
-graficas.mostrar_graficas(h, num_periodos, f, g, 1.0, 0.0, 0.0, 'oscilador lineal no forzado ni amortiguado')
+x_0 = 1.0
+y_0 = 0.0
+t_0 = 0.0
+graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador lineal no forzado ni amortiguado')
