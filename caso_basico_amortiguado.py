@@ -9,7 +9,7 @@ def f(x, y, t):
 	return y
 
 def g(x, y, t):
-	return -0.5 * y - x
+	return -x - 0.52 * y
 
 h = 0.01
 num_periodos = 5
