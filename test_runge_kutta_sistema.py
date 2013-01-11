@@ -19,7 +19,7 @@ def lanzar_metodo():
 
 	file = open('test.dat', 'w')
 	for i, ((t, x_n, _), x_a) in enumerate(zip(sol_numerica, sol_analitica)):
-		file.write('%.2f,%.6f,%.6f,%.6f\n' % (t, x_n, x_a, x_n - x_a))
+		file.write('%.2f \t %.6f \t %.6f \t %.6f\n' % (t, x_n, x_a, x_n - x_a))
 	file.close()
 
 lanzar_metodo()

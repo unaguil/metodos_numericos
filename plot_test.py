@@ -7,7 +7,7 @@ import test_runge_kutta_sistema
 
 test_runge_kutta_sistema.lanzar_metodo()
 
-csvreader = csv.reader(open('test.dat'))
+csvreader = csv.reader(open('test.dat'), delimiter='\t')
 tiempo = []
 numerica = []
 analitica = []
