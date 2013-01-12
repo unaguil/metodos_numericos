@@ -31,7 +31,7 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
 		k2 = h * f(x + k1 / 2, y + l1 / 2, t + h / 2)
 		l2 = h * g(x + k1 / 2, y + l1 / 2, t + h / 2)
 
-		k3 = h * f(x + k1 / 2, y + l1 / 2, t + h / 2)
+		k3 = h * f(x + k2 / 2, y + l2 / 2, t + h / 2)
 		l3 = h * g(x + k2 / 2, y + l2 / 2, t + h / 2)
 
 		k4 = h * f(x + k3, y + l3, t + h)
