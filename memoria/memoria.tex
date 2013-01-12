@@ -32,6 +32,89 @@ Para la resolución de la ecuación diferencial no lineal planteada en el trabaj
 
 Como el enunciado del trabajo requiere un método numérico de cuarto orden, se ha aplicado el método Runge-Kutta de dicho orden de acuerdo a su definición en la página 460 del libro de Gerald \& Wheatley \textit{Análisis numérico con aplicaciones}. En el método de Runge-Kutta, aplicado a la resolución de una ecuación diferencial del tipo $\frac{dy}{dx}$, el incremento en $y$ no es proporcional unicamente al valor de la derivada en el punto anterior, sino a un promedio ponderado de varias estimaciones de dicho incremento. En el caso concreto del método de cuarto orden se obtiene un promedio ponderado de cuatro estimaciones $k_n$ calculada cada una de ellas utilizando la información de las $k_{n -1}$. 
 
-En concreto, el  
+\subsection{Método de Runge-Kutta}
+
+El método de Runge-Kutta de cuarto orden para la resolución de una ecuación diferencial de primer grado queda definido por el siguiente conjunto de ecuaciones:
+
+\begin{equation}
+	k_1 = hf(x_n, y_n)
+\end{equation}
+
+\begin{equation}
+	k_2 = hf(x_n + \frac{1}{2}h, y_n + \frac{1}{2}k_1)
+\end{equation}
+
+\begin{equation}
+	k_3 = hf(x_n + \frac{1}{2}h, y_n + \frac{1}{2}k_2)
+\end{equation}
+
+\begin{equation}
+	k_4 = hf(x_n + h, y_n + k_3)
+\end{equation} 
+
+\begin{equation}
+	y_{n+1} = y_{n} + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+\end{equation}
+
+\subsection{Aplicación del método a ecuaciones diferenciales de segundo grado}
+Para poder aplicar el método anterior a la resolución numérica de ecuaciones diferenciales de segundo grado, como es el caso del oscilador anarmónico, es necesario, primeramente, llevar a cabo una descomposición de la ecuación planteada en un sistema de dos ecuaciones diferenciales
+de primer grado, de acuerdo a lo explicado en las páginas 477-478 del libro de Gerald \& Wheatley. 
+
+En el caso de la ecuación (\ref{ecuacion-diferencial}) del problema propuesto, la realización de la substitución $\frac{dx}{dt} = y$, permite obtener el siguiente sistema de ecuaciones:
+
+\begin{equation}
+	\frac{dx}{dt} = y = f(t, x, y)
+\end{equation}
+
+\begin{equation}
+	\frac{dy}{dt} = F_{o}\cos{\omega{}t} -\gamma{}y - \omega_{o}^2x - \beta{}x^2 = g(t, x, y) 	
+\end{equation}
+
+donde se han indicado también las funciones $f(t, x, y)$ y $g(t, x, y)$ se utilizarán para la aproximación.  
+
+Por otro lado, el método de Runge-Kutta explicado anteriormente debe ser modificado para poder ser aplicado al sistema de ecuaciones diferenciales de forma correcta, tal y como se explica en la página 480 del libro de Gerald \& Wheatley. En este caso se alterna en la obtención de las constantes $k_n$ para cada una de las ecuaciones, y se utilizan los valores correspondientes a cada variable dependiente
+para el incremento durante el cálculo de la siguiente constante. Así, las ecuaciones de Runge-Kutta para el caso de un sistema de dos ecuaciones son de la siguiente forma:
+
+\begin{equation}
+	k_1 = hf(t_n, x_n, y_n)
+\end{equation}
+
+\begin{equation}
+	l_1 = hg(t_n, x_n, y_n)
+\end{equation}
+
+\begin{equation}
+	k_2 = hf(t_n + \frac{1}{2}h, x_n + \frac{1}{2}k_1, y_n + \frac{1}{2}l_1)
+\end{equation}
+
+\begin{equation}
+	l_2 = gf(t_n + \frac{1}{2}h, x_n + \frac{1}{2}k_1, y_n + \frac{1}{2}l_1)
+\end{equation}
+
+\begin{equation}
+	k_3 = hf(t_n + \frac{1}{2}h, x_n + \frac{1}{2}k_2, y_n + \frac{1}{2}l_2)
+\end{equation}
+
+\begin{equation}
+	k_3 = gf(t_n + \frac{1}{2}h, x_n + \frac{1}{2}k_2, y_n + \frac{1}{2}l_2)
+\end{equation}
+
+\begin{equation}
+	k_4 = hf(t_n + h, x_n + k_3, y_n + l_3)
+\end{equation}
+
+\begin{equation}
+	k_4 = hf(x_n + h, x_n + k_3, y_n + l_3)
+\end{equation} 
+
+\begin{equation}
+	x_{n+1} = x_n + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+\end{equation}
+
+\begin{equation}
+	y_{n+1} = y_n + \frac{1}{6}(l_1 + 2l_2 + 2l_3 + l_4)
+\end{equation}
+
+\section{Estudio de la precisión}
 
 \end{document}
