@@ -11,6 +11,8 @@
 \begin{document}
 \maketitle
 
+\renewcommand{\tablename}{Tabla}
+
 \section{Introducción}
 La ecuación diferencial (\ref{ecuacion-diferencial}), proporcionada en el enunciado del trabajo, modela un oscilador no lineal en su forma más general.
 
@@ -126,7 +128,6 @@ En la tabla \ref{tab:precision} se recogen los diferentes resultados obtenidos c
 La precisión de ocho decimales es suficiente para llevar a cabo el estudio de los diferentes casos del oscilador armónico y anarmónico. Ya que se obtiene la misma precisión para los dos valores de $h$, se ha seleccionado el mayor de los dos con la finalidad de generar un menor número de resultados en la tabla y facilitar los cálculos necesarios. Así, durante la realización de los siguientes apartados del trabajo, se utiliza $h = 0.01$ como paso de integración de las ecuaciones diferenciales mediante la aplicación del método de Runge-Kutta.  
 
 \begin{table}[h]
-\label{tab:precision}
 \centering
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -152,6 +153,7 @@ t & $h = 0.08$ & $h = 0.04$ & $h = 0.02$ & $h = 0.01$ & $h = 0.005$ \\
 \end{tabular}
 \caption{Estudio de la precisión de la solución para distintos valores del paso de integración $h$. Se han utilizado los parámetros
 $\gamma=0.52$, $\beta=1$, $F_o = 0.516$ y $w=1.2$. La tabla muestra que los valores convergen hasta el séptimo decimal en los casos en que $h = 0.01$ y $h=0.005$}
+\label{tab:precision}
 \end{table}
 
 \subsection{Transformada de Fourier}
@@ -182,10 +184,10 @@ El sistema de ecuaciones diferenciales queda en este caso con la forma
 En el caso de que se apliquen las condiciones iniciales consideradas, debido a que el oscilador armónico se encuentra inicialmente en reposo y sobre el no actua ninguna fuerza, no se producirá ningun cambio en su situación a lo largo del tiempo. Por otro lado, ya no existe ningún movimiento armónico del oscilador las frecuencias constitutivas del mismo tienen todas valor exactamente cero. Ambos resultados se muestran en la figura \ref{fig:caso_lineal}.
 
 \begin{figure}[h]
-\label{fig:caso_lineal}
 \centering
 \includegraphics[width=0.75\linewidth]{caso_lineal.pdf}
 \caption{Representación de la señal y espectro de potencias para un oscilador lineal no forzado ni amortiguado con $w_o = 1$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
+\label{fig:caso_lineal}
 \end{figure}
 
 \subsection{Oscilador lineal forzado pero no amortiguado}
@@ -202,10 +204,10 @@ Eliminando los términos cuyos coeficientes son cero, el sistema de ecuaciones q
 al que se aplican las condiciones iniciales correspondientes. El oscilador se encuentra en reposo y en el origen de coordendas, sin embargo, la aplicación de la fuerza oscilante externa con una frecuencia igual a la frecuencia natural del oscilador produce el fenómeno conocido como \textit{resonancia}. Dicha fuerza externa proporciona energía al oscilador produciendo que vaya aumentando su amplitud en cada ciclo. Este efecto puede observarse en la figura \ref{fig:caso_forzado}. En el espectro de frecuencias puede observarse otras frecuencias constitutivas que proporcionan la forma correspondiente a la señal del oscilador.
 
 \begin{figure}[h]
-\label{fig:caso_forzado}
 \centering
 \includegraphics[width=0.75\linewidth]{caso_forzado.pdf}
 \caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado pero no amortiguado con $w_o = 1$ y $w = 1$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
+\label{fig:caso_forzado}
 \end{figure}
 
 \subsection{Oscilador lineal forzado y amortiguado}
