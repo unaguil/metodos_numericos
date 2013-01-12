@@ -198,10 +198,10 @@ Eliminando los términos cuyos coeficientes son cero, el sistema de ecuaciones q
 \end{equation}
 
 \begin{equation}
-	\frac{dy}{dt} = F_o\cos{wt} - w_o^2 y 	
+	\frac{dy}{dt} = F_o\cos{wt} - w_o^2 x = g(t, x, y) 	
 \end{equation}
 
-al que se aplican las condiciones iniciales correspondientes. El oscilador se encuentra en reposo y en el origen de coordendas, sin embargo, la aplicación de la fuerza oscilante externa con una frecuencia igual a la frecuencia natural del oscilador produce el fenómeno conocido como \textit{resonancia}. Dicha fuerza externa proporciona energía al oscilador produciendo que vaya aumentando su amplitud en cada ciclo. Este efecto puede observarse en la figura \ref{fig:caso_forzado}. En el espectro de frecuencias puede observarse otras frecuencias constitutivas que proporcionan la forma correspondiente a la señal del oscilador.
+al que se aplican las condiciones iniciales. El oscilador se encuentra en reposo y en el origen de coordendas, sin embargo, la aplicación de la fuerza oscilante externa con una frecuencia igual a la frecuencia natural del oscilador produce el fenómeno conocido como \textit{resonancia}. Dicha fuerza externa proporciona energía al oscilador produciendo que vaya aumentando su amplitud en cada ciclo. Este efecto puede observarse en la figura \ref{fig:caso_forzado}. En el espectro de frecuencias pueden observarse otras frecuencias constitutivas que proporcionan la forma de la señal del oscilador.
 
 \begin{figure}[h]
 \centering
@@ -211,5 +211,25 @@ al que se aplican las condiciones iniciales correspondientes. El oscilador se en
 \end{figure}
 
 \subsection{Oscilador lineal forzado y amortiguado}
+En el caso de este tipo de oscilación se introduce un nuevo termino en el sistema de ecuaciones que produce una disminución de la energía del oscilador con el paso del tiempo.
+
+\begin{equation}
+	\frac{dx}{dt} = y = f(t, x, y)
+\end{equation}
+
+\begin{equation}
+	\frac{dy}{dt} = F_o\cos{wt} - w_o^2 x - \gamma{}y = g(t, x, y) 	
+\end{equation}
+
+A partir de la aplicación de las condiciones iniciales y del método de integración se obtiene la señal correspondiente al oscilador armónico forzado y amortiguado. Como puede observarse en la figura \ref{fig:caso_forzado_amortiguado}, la amplitud del movimiento del oscilador no crece de una forma indefinida debido a la aplicación de la fuerza periódica externa, como si ocurre en el caso del oscilador forzado y no amortiguado.
+
+La introducción del factor de amortiguamiento, debido a la aplicación de fuerzas no conservativas, produce la reducción de la energía disponible. Sin embargo, debido a que tanto la fuerza periódica aplicada como la amortiguación son constantes en el tiempo, y una vez que se termina la fase transitoria del inicio del movimiento, el oscilador produce una señal sinusoidal casi monocromática. Esto puede observarse al analizar el espectro de frencuencias, donde existe una componente principal de frecuencia y un conjunto de aportaciones pequeñas en potencia pero necesarias para producir la fase transitoria.  
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{caso_forzado_amortiguado.pdf}
+\caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado y amortiguado con $w_o = 1$, $w = 1$ y un factor de amortiguamiento de $\gamma = 0.52$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
+\label{fig:caso_forzado_amortiguado}
+\end{figure}
 
 \end{document}
