@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
+\usepackage{a4wide}
 
 \title{Trabajo obligatorio Métodos Numéricos I Resonancia en oscilaciones no lineales}
 \author{Unai Aguilera Irazabal\\ DNI: 45663055M}
@@ -10,5 +11,27 @@
 \maketitle
 
 \section{Introducción}
+La ecuación diferencial (\ref{ecuacion-diferencial}), proporcionada en el enunciado del trabajo, modela un oscilador no lineal en su forma más general.
+
+\begin{equation}
+\label{ecuacion-diferencial}
+	 \frac{d^2 x}{dt^2} + \gamma\frac{dx}{dt} + \omega_{o}^2x + \beta{}x^2 = F_{o}\cos{\omega{}t}
+\end{equation}
+
+El primer término del primer miembro de la ecuación representa la aceleración que sufre el oscilador durante su movimiento. El segundo término
+define el amortiguamento del oscilador debido a la aplicación de fuerzas que no son conservativas, como puede ser el caso del rozamiento. Dicho término es proporcional a la velocidad del oscilador en cada instante y está regulado por el coeficiente $\gamma$.
+
+El tercer miembro es la fuerza lineal que es aplicada sobre el oscilador y que tiene naturaleza armónica. Este termino es proporcional a la frecuencia natural del oscilador $\omega_{o}$ que viene determinada por las características físicas del mismo: masa, longitud del péndulo, constante elástica del muelle, longitud del péndulo, etc.
+
+El último termino del primer miembro introduce las características no lineales del oscilador mediante la aplicación de fuerzas que dependen del cuadrado de la posición del oscilador en cada instante.
+
+Por último, el segundo miembro de la ecuación representa la aplicación de una fuerza externa sobre el oscilador de naturaleza periódica y con una frecuencia $\omega$.
+
+\section{Resolución numérica}
+Para la resolución de la ecuación diferencial no lineal planteada en el trabajo se ha optado por la aplicación de un método númerico para la integración de ecuaciones diferenciales. Este tipo de métodos permite obtener una solución numérica en aquellos casos en los que no es posible llevar a cabo la resolución de la ecuación diferencial por métodos analíticos. De una forma general, la obtención de la solución númerica de una ecuación diferencial se basa en la aproximación del siguiente valor de la función mediante incrementos muy pequeños de la variable independiente y utilizando para ello la información proporcionada por la derivada primera de la función. La derivada de la función es evaluada en cada paso, obteniéndose la nueva razón del incremento de la variable dependiente para el siguiente. Se obtiene así una tabla que contiene los valores de la función en determinados valores de la variable independiente, normalmente esquipaciados entre sí debido a la utilización de un paso constando.
+
+Como el enunciado del trabajo requiere un método numérico de cuarto orden, se ha aplicado el método Runge-Kutta de dicho orden de acuerdo a su definición en la página 460 del libro de Gerald \& Wheatley \textit{Análisis numérico con aplicaciones}. En el método de Runge-Kutta, aplicado a la resolución de una ecuación diferencial del tipo $\frac{dy}{dx}$, el incremento en $y$ no es proporcional unicamente al valor de la derivada en el punto anterior, sino a un promedio ponderado de varias estimaciones de dicho incremento. En el caso concreto del método de cuarto orden se obtiene un promedio ponderado de cuatro estimaciones $k_n$ calculada cada una de ellas utilizando la información de las $k_{n -1}$. 
+
+En concreto, el  
 
 \end{document}
