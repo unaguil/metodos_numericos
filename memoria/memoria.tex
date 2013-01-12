@@ -206,7 +206,7 @@ al que se aplican las condiciones iniciales. El oscilador se encuentra en reposo
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.75\linewidth]{caso_forzado.pdf}
-\caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado pero no amortiguado con $w_o = 1$ y $w = 1$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
+\caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado pero no amortiguado con $w_o = 1$ y $w = 1$ y un coeficiente para la fuerza $F_o = 1$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
 \label{fig:caso_forzado}
 \end{figure}
 
@@ -228,8 +228,48 @@ La introducción del factor de amortiguamiento, debido a la aplicación de fuerz
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.75\linewidth]{caso_forzado_amortiguado.pdf}
-\caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado y amortiguado con $w_o = 1$, $w = 1$ y un factor de amortiguamiento de $\gamma = 0.52$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
+\caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado y amortiguado con $w_o = 1$, $w = 1$, $F_o = 1$ y un coeficiente de amortiguamiento de $\gamma = 0.52$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
 \label{fig:caso_forzado_amortiguado}
 \end{figure}
+
+\subsection{Oscilador no lineal forzado y amortiguado}
+En este último caso se utiliza la forma completa del sistema de ecuaciones diferenciales que rige el movimiento del oscilador anarmónico:
+
+\begin{equation}
+	\frac{dx}{dt} = y = f(t, x, y)
+\end{equation}
+
+\begin{equation}
+	\frac{dy}{dt} = F_{o}\cos{\omega{}t} -\gamma{}y - \omega_{o}^2x - \beta{}x^2 = g(t, x, y) 	
+\end{equation}
+
+utilizando nuevamente las condiciones iniciales y aplicando los métodos numéricos correspondientes se obtiene la señal correspondiente a este oscilador. Se estudian dos conjuntos diferentes de parámetros:
+
+\begin{itemize}
+	\item S1: $\gamma = 0.52$, $F_o = 0.516$, $w = 1.2$
+	\item S2: $\gamma = 0.48$, $F_o = 0.5162$, $w = 1.3$
+\end{itemize}
+
+cuya forma de la señal del oscilardo y el espectro de potencias correspondiente ha sido representado en las figuras \ref{fig:caso_anarmonico_s1} y \ref{fig:caso_anarmonico_s2}, respectivamente. Como puede observarse en las figuras, en ambos casos, la señal posee un perfil que varía en el tiempo de una forma no periódica, produciéndose perturbaciones en la amplitud de la misma durante el tiempo. Por otro lado, el espectro de potencias posee varias componentes que constiyuen la forma de la onda final. 
+
+Además, como puede observarse al comparar la representación de los dos conjuntos de parámetros, la variación de los parámetros del oscilador anarmónico produce formas de onda muy diferentes entre sí con constituyentes de frecuencia distintas muy distintas. Esto no ocurre en los casos estudiados anteriormente en los cuales la variación de los parámetros produce la misma forma de onda, así como el mismo espectro de frecuencias, aunque, por supuesto, con magnitudes de amplitud y potencia distintas.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{caso_anarmonico_s1.pdf}
+\caption{Representación de la señal y espectro de potencias para un oscilador anarmónico forzado y amortiguado con $w_o = 1$, $w = 1$, $\gamma = 0.52$, $F_o = 0.516$, $w = 1.2$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
+\label{fig:caso_anarmonico_s1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\linewidth]{caso_anarmonico_s2.pdf}
+\caption{Representación de la señal y espectro de potencias para un oscilador anarmónico forzado y amortiguado con $w_o = 1$, $w = 1$, $\gamma = 0.48$, $F_o = 0.5162$, $w = 1.3$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
+\label{fig:caso_anarmonico_s2}
+\end{figure}
+
+\section{Anexo}
+
+\subsection{Sobre la implementación de los métodos}
 
 \end{document}
