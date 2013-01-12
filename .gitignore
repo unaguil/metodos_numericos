@@ -36,3 +36,6 @@ nosetests.xml
 
 #other
 *.dat
+*.aux
+*.log
+*.fdb*
