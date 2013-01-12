@@ -20,13 +20,12 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 		tiempo.append(t)
 		numerica.append(x)
 
-	plt.plot(tiempo, numerica, label='Solución numérica')
+	plt.subplot(211)
+	plt.plot(tiempo, numerica)
 	plt.title('Movimiento del %s' % titulo)
 	plt.xlabel('Tiempo [rad]')
 	plt.ylabel('x(t)')
-	plt.show()
 
-	plt.clf()
 
 	x = [x for _, x, y in sol_numerica]
 	trans_fourier = fft.fft(x)
@@ -38,10 +37,15 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 
 	n = range(len(espectro_potencia))
 	max = 20
+
+	plt.subplot(212)
 	plt.plot(n[:max], espectro_potencia[:max], 'b,')
 	plt.vlines(n[:max], [0], espectro_potencia[:max], 'b')
-	plt.title('Espectro de potencia del %s' % titulo)
+	plt.title('Espectro de potencia')
 	plt.xlabel('Frecuencias')
+	plt.legend()
 	plt.xticks(n[:max])
 	plt.ylabel('Potencia')
+
+	plt.tight_layout()
 	plt.show()
