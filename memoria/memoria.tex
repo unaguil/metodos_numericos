@@ -58,6 +58,7 @@ El método de Runge-Kutta de cuarto orden para la resolución de una ecuación d
 \end{equation}
 
 \subsubsection{Método de Runge-Kutta para ecuaciones diferenciales de segundo grado}
+\label{segundo_grado}
 Para poder aplicar el método anterior a la resolución numérica de ecuaciones diferenciales de segundo grado, como es el caso del oscilador anarmónico, es necesario, primeramente, llevar a cabo una descomposición de la ecuación planteada en un sistema de dos ecuaciones diferenciales
 de primer grado, de acuerdo a lo explicado en las páginas 477-478 del libro de Gerald \& Wheatley. 
 
@@ -118,6 +119,40 @@ para el incremento durante el cálculo de la siguiente constante. Así, las ecua
 
 \subsubsection{Estudio de la precisión del método de Runge-Kutta}
 \label{precision-runge-kutta}
+Se lleva a continuación un estudio de la precisión del metodo implementado llevando a cabo una modificación del paso de integración $h$ y comparando los resultados obtenidos para diferentes valores de $t$ hasta el octavo decimal. El estudio de precisión se ha llevado a cabo
+aplicando el método las ecuaciones definidas en la sección \ref{segundo_grado} con las condiciones iniciales $x(0) = \frac{dx}{dt}(0) = 0$. 
+En la tabla \ref{tab:precision} se recogen los diferentes resultados obtenidos cuando se va reduciendo el paso de integración a la mitad. Como puede observarse, los resultados mejoran hasta que convergen cuando el paso de integración se cambia de $h = 0.01$ a $h=0.005$, obteniéndose una precisión de ocho decimales en la aproximación. 
+
+La precisión de ocho decimales es suficiente para llevar a cabo el estudio de los diferentes casos del oscilador armónico y anarmónico. Ya que se obtiene la misma precisión para los dos valores de $h$, se ha seleccionado el mayor de los dos con la finalidad de generar un menor número de resultados en la tabla y facilitar los cálculos necesarios. Así, durante la realización de los siguientes apartados del trabajo, se utiliza $h = 0.01$ como paso de integración de las ecuaciones diferenciales mediante la aplicación del método de Runge-Kutta.  
+
+\begin{table}
+\label{tab:precision}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+t & $h = 0.08$ & $h = 0.04$ & $h = 0.02$ & $h = 0.01$ & $h = 0.005$ \\
+\hline
+0.00 & 0.00000000 & 0.00000000 & 0.00000000 & 0.00000000 & 0.00000000 \\ 
+0.40 & 0.03729791 & 0.03729797 & 0.03729797 & 0.03729797 & 0.03729797 \\ 
+0.80 & 0.12560652 & 0.12560665 & 0.12560666 & 0.12560666 & 0.12560666 \\ 
+1.20 & 0.21776317 & 0.21776331 & 0.21776332 & 0.21776332 & 0.21776332 \\ 
+1.60 & 0.26365461 & 0.26365463 & 0.26365463 & 0.26365463 & 0.26365463 \\ 
+2.00 & 0.22867909 & 0.22867888 & 0.22867887 & 0.22867886 & 0.22867886 \\ 
+2.40 & 0.10701479 & 0.10701434 & 0.10701431 & 0.10701431 & 0.10701431 \\ 
+2.80 & -0.07889020 & -0.07889079 & -0.07889082 & -0.07889082 & -0.07889082 \\ 
+3.20 & -0.29094257 & -0.29094316 & -0.29094319 & -0.29094320 & -0.29094320 \\ 
+3.60 & -0.48987965 & -0.48988020 & -0.48988023 & -0.48988024 & -0.48988024 \\ 
+4.00 & -0.64352628 & -0.64352678 & -0.64352682 & -0.64352682 & -0.64352682 \\ 
+4.40 & -0.72838016 & -0.72838067 & -0.72838070 & -0.72838070 & -0.72838070 \\ 
+4.80 & -0.72853695 & -0.72853749 & -0.72853753 & -0.72853753 & -0.72853753 \\ 
+5.20 & -0.63596267 & -0.63596328 & -0.63596331 & -0.63596332 & -0.63596332 \\ 
+5.60 & -0.45435681 & -0.45435747 & -0.45435751 & -0.45435751 & -0.45435751 \\ 
+6.00 & -0.20634549 & -0.20634617 & -0.20634620 & -0.20634621 & -0.20634621 \\ 
+\hline
+\end{tabular}
+\caption{Estudio de la precisión de la solución para distintos valores del paso de integración $h$. La tabla muestra
+que los valores convergen hasta el séptimo decimal en los casos en que $h = 0.01$ y $h=0.005$}
+\end{table}
 
 \subsection{Transformada de Fourier}
 
@@ -131,7 +166,7 @@ Se exponen a continuación los resultados del estudio realizado tanto de la form
 	\item Oscilador no lineal forzado y amortiguado ($\gamma \neq 0, \beta \neq 0, F_o \neq 0$).
 \end{itemize}
 
-Aunque los tres primeros casos pueden ser resueltos de forma analítica para encontrar la solución exacta, se ha llevado a cabo la resolución numérica de los diferentes casos para comprobar que los métodos implementados se comportan de la forma esperada en cada caso. Para el estudio de todos los casos anteriores se han considerado las siguientes condiciones iniciales:  $x(0) = \frac{dx}{dt}(0) = 0$.
+Aunque los tres primeros casos pueden ser resueltos de forma analítica para encontrar la solución exacta, se ha llevado a cabo la resolución numérica de los diferentes casos para comprobar que los métodos implementados se comportan de la forma esperada en cada caso. Para el estudio de todos los casos anteriores se han considerado las siguientes condiciones iniciales: $x(0) = \frac{dx}{dt}(0) = 0$.
 
 \subsection{Oscilador lineal no forzado ni amortiguado}
 En la sección \ref{precision-runge-kutta} se ha llevado a cabo un estudio de la precisión del método de integración numérica para la resolución del sistema de ecuaciones. En el caso de que se apliquen las condiciones iniciales consideradas, debido a que el oscilador armónico se encuentra inicialmente en reposo y sobre el no actua ninguna fuerza, no se producirá ningun cambio en su situación a lo largo del tiempo. Por otro lado, ya no existe ningún movimiento armónico del oscilador las frecuencias constitutivas del mismo tienen todas valor exactamente cero. Ambos resultados se muestran en la figura \ref{fig:caso_lineal}.
