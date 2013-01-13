@@ -4,7 +4,7 @@ def runge_kutta(h, n, f, x_0, y_0, verbose=False):
 	x = x_0
 	y = y_0
 
-	for i in range(n + 1):
+	for i in range(n):
 		k1 = h * f(x, y)
 		k2 = h * f(x + h / 2, y + k1 / 2)
 		k3 = h * f(x + h / 2, y + k2 / 2)
@@ -24,7 +24,8 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
 
 	tabla = [(t, x, y)]
 
-	for i in range(n + 1): #bucle hasta el número de pasos indicado
+	#bucle para obtener una muestra de n valores
+	for i in range(n):
 		k1 = h * f(x, y, t) #cálculo de los coeficientes
 		l1 = h * g(x, y, t)
 
@@ -42,6 +43,8 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
 		x = x + (k1 + 2 * k2 + 2 * k3 + k4) / 6
 		y = y + (l1 + 2 * l2 + 2 * l3 + l4) / 6
 		t += h
+
+		# print "%.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f" % (t, x, y, k1, k2, k3, k4, l1, l2, l3, l4)
 
 		#los resultados son almacenados en una lista de elementos (t, x, y)
 		tabla.append((t, x, y))
