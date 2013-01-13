@@ -8,7 +8,7 @@ from metodos import transformada_fourier
 
 from numpy import fft
 
-def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
+def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo, fichero=None):
 	periodo = 2.0 * math.pi 
 	n = int(num_periodos * periodo / h)
 	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0)
@@ -48,4 +48,8 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo):
 	plt.ylabel('Potencia')
 
 	plt.tight_layout()
+
+	if fichero is not None:
+		plt.savefig(fichero)
+
 	plt.show()

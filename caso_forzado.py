@@ -16,4 +16,4 @@ num_periodos = 5
 x_0 = 0.0
 y_0 = 0.0
 t_0 = 0.0
-graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador lineal forzado no amortiguado')
+graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador lineal forzado no amortiguado', 'memoria/caso_forzado.pdf')
