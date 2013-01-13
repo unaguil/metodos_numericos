@@ -4,12 +4,27 @@
 \usepackage[spanish]{babel}
 \usepackage{a4wide}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{ucs}
+
+\lstset{
+extendedchars=\true,
+inputencoding=utf8x,
+numberstyle=\footnotesize,
+basicstyle=\ttfamily\footnotesize,
+numbers=left,
+stepnumber=1,
+frame=shadowbox,
+breaklines=true,
+tabsize=4
+}
 
 \title{Trabajo obligatorio Métodos Numéricos I Resonancia en oscilaciones no lineales}
 \author{Unai Aguilera Irazabal\\ DNI: 45663055M}
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 \renewcommand{\tablename}{Tabla}
 
@@ -268,8 +283,48 @@ Además, como puede observarse al comparar la representación de los dos conjunt
 \label{fig:caso_anarmonico_s2}
 \end{figure}
 
-\section{Anexo}
+\section{Conclusiones}
 
-\subsection{Sobre la implementación de los métodos}
+\section{Anexos}
+
+\subsection{Implementación de los métodos numéricos}
+La implementación de los diferentes métodos numéricos utilizandos en este trabajo ha sido realizada utilizando el lenguaje de programación Python (http://www.python.org/). Se incluye a continuación un listado del código de los diferentes métodos numéricos utilizados
+
+\begin{figure}
+\begin{lstlisting}
+def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
+	t = t_0 # condiciones iniciales del sistema
+	x = x_0
+	y = y_0
+
+	tabla = [(t, x, y)]
+
+	for i in range(n + 1): #bucle hasta el numero de pasos indicado
+		k1 = h * f(x, y, t) #cálculo de los coeficientes
+		l1 = h * g(x, y, t)
+
+		k2 = h * f(x + k1 / 2, y + l1 / 2, t + h / 2)
+		l2 = h * g(x + k1 / 2, y + l1 / 2, t + h / 2)
+
+		k3 = h * f(x + k2 / 2, y + l2 / 2, t + h / 2)
+		l3 = h * g(x + k2 / 2, y + l2 / 2, t + h / 2)
+
+		k4 = h * f(x + k3, y + l3, t + h)
+		l4 = h * g(x + k3, y + l3, t + h)
+
+		#incremento de las variables dependientes (x, y)
+		# y de la independiente (t)
+		x = x + (k1 + 2 * k2 + 2 * k3 + k4) / 6
+		y = y + (l1 + 2 * l2 + 2 * l3 + l4) / 6
+		t += h
+
+		#los resultados son almacenados en una lista de elementos (t, x, y)
+		tabla.append((t, x, y))
+
+	return tabla
+\end{lstlisting}
+\caption{Código de la implementación del método Runge-Kutta de cuarto orden para la resolución de un sistema de de dos ecuaciones diferenciales}
+\label{runge_kutta_code}
+\end{figure}
 
 \end{document}
