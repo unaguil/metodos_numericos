@@ -19,13 +19,14 @@ breaklines=true,
 tabsize=4
 }
 
-\title{Trabajo obligatorio Métodos Numéricos I Resonancia en oscilaciones no lineales}
+\title{Métodos Numéricos I - Resonancia en oscilaciones no lineales}
 \author{Unai Aguilera Irazabal\\ DNI: 45663055M}
 
 \begin{document}
 \maketitle
 \tableofcontents
 
+\pagebreak
 \renewcommand{\tablename}{Tabla}
 
 \section{Introducción}
@@ -171,7 +172,8 @@ $\gamma=0.52$, $\beta=1$, $F_o = 0.516$ y $w=1.2$. La tabla muestra que los valo
 \label{tab:precision}
 \end{table}
 
-\subsection{Transformada de Fourier}
+\subsection{Transformada de Fourier Discreta}
+Para el cálculo del espectro de potencias de las distintas señales producidas en cada uno de los casos del oscilador no lineal se ha utililizado la Transformada de Fourier Discreta. Este método de análisis matemático permite descomponer una señal discreta y periódica en el tiempo en un conjunto de señales sinusoidales constitutivas. Su finalidad es aproximar una señal periódica mediante una serie de armónicos constituyentes de distintas frecuencias.
 
 \section{Casos de estudio}
 Se exponen a continuación los resultados del estudio realizado tanto de la forma de la señal como del espectro de potencias para cada uno de los siguientes casos de la ecuación \ref{ecuacion-diferencial}:
@@ -196,9 +198,9 @@ El sistema de ecuaciones diferenciales queda en este caso con la forma
 	\frac{dy}{dt} = -w_o^2 y = g(t, x, y)
 \end{equation}
 
-En el caso de que se apliquen las condiciones iniciales consideradas, debido a que el oscilador armónico se encuentra inicialmente en reposo y sobre el no actua ninguna fuerza, no se producirá ningun cambio en su situación a lo largo del tiempo. Por otro lado, ya no existe ningún movimiento armónico del oscilador las frecuencias constitutivas del mismo tienen todas valor exactamente cero. Ambos resultados se muestran en la figura \ref{fig:caso_lineal}.
+En el caso de que se apliquen las condiciones iniciales consideradas, debido a que el oscilador armónico se encuentra inicialmente en reposo y sobre el no actua ninguna fuerza, no se producirá ningun cambio en su situación a lo largo del tiempo. Por otro lado, ya que no existe ningún movimiento armónico del oscilador las frecuencias constitutivas del mismo tienen todas valor exactamente cero. Ambos resultados se muestran en la figura \ref{fig:caso_lineal}.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.75\linewidth]{caso_lineal.pdf}
 \caption{Representación de la señal y espectro de potencias para un oscilador lineal no forzado ni amortiguado con $w_o = 1$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
@@ -216,9 +218,9 @@ Eliminando los términos cuyos coeficientes son cero, el sistema de ecuaciones q
 	\frac{dy}{dt} = F_o\cos{wt} - w_o^2 x = g(t, x, y) 	
 \end{equation}
 
-al que se aplican las condiciones iniciales. El oscilador se encuentra en reposo y en el origen de coordendas, sin embargo, la aplicación de la fuerza oscilante externa con una frecuencia igual a la frecuencia natural del oscilador produce el fenómeno conocido como \textit{resonancia}. Dicha fuerza externa proporciona energía al oscilador produciendo que vaya aumentando su amplitud en cada ciclo. Este efecto puede observarse en la figura \ref{fig:caso_forzado}. En el espectro de frecuencias pueden observarse otras frecuencias constitutivas que proporcionan la forma de la señal del oscilador.
+al que se aplican las condiciones iniciales. El oscilador se encuentra en reposo y en el origen de coordendas, sin embargo, la aplicación de la fuerza oscilante externa con una frecuencia igual a la frecuencia natural del oscilador produce el fenómeno conocido como \textit{resonancia}. Dicha fuerza externa proporciona energía al oscilador produciendo aumentando la amplitud de su movimiento en cada ciclo, efecto puede observarse en la figura \ref{fig:caso_forzado}. En el espectro de potencias pueden observarse varias frecuencias constitutivas que proporcionan la forma de la señal. Una señal sinusoidal pura y de extensión infinita estaría constituida por una única componente de una frecuencia determinada, sin embargo dicha señal no puede representarse en un número finito de ciclos. La señal analizada tiene una longitud determinada en el tiempo y por lo tanto es necesario que esté constituida por varias frecuencias que posibiliten sintetizar la forma adecuada.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.75\linewidth]{caso_forzado.pdf}
 \caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado pero no amortiguado con $w_o = 1$ y $w = 1$ y un coeficiente para la fuerza $F_o = 1$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
@@ -238,9 +240,9 @@ En el caso de este tipo de oscilación se introduce un nuevo termino en el siste
 
 A partir de la aplicación de las condiciones iniciales y del método de integración se obtiene la señal correspondiente al oscilador armónico forzado y amortiguado. Como puede observarse en la figura \ref{fig:caso_forzado_amortiguado}, la amplitud del movimiento del oscilador no crece de una forma indefinida debido a la aplicación de la fuerza periódica externa, como si ocurre en el caso del oscilador forzado y no amortiguado.
 
-La introducción del factor de amortiguamiento, debido a la aplicación de fuerzas no conservativas, produce la reducción de la energía disponible. Sin embargo, debido a que tanto la fuerza periódica aplicada como la amortiguación son constantes en el tiempo, y una vez que se termina la fase transitoria del inicio del movimiento, el oscilador produce una señal sinusoidal casi monocromática. Esto puede observarse al analizar el espectro de frencuencias, donde existe una componente principal de frecuencia y un conjunto de aportaciones pequeñas en potencia pero necesarias para producir la fase transitoria.  
+La introducción del factor de amortiguamiento, debido a la aplicación de fuerzas no conservativas, produce la reducción de la energía disponible. Sin embargo, debido a que tanto la fuerza periódica aplicada como la amortiguación son constantes en el tiempo, y una vez que se termina la fase transitoria del inicio del movimiento, el oscilador produce una señal sinusoidal de amplitud constante. Esto puede observarse al analizar el espectro de frencuencias, y comprobar que la forma del espectro de frecuencias es similar al caso anterior. Sin embargo, la potencia de cada componente de frecuencia es menor que el caso en el que no se produce amortiguación, debido a que la amplitud de la señal se encuentra acotada y, por lo tanto, no crece de forma indefinida.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.75\linewidth]{caso_forzado_amortiguado.pdf}
 \caption{Representación de la señal y espectro de potencias para un oscilador lineal forzado y amortiguado con $w_o = 1$, $w = 1$, $F_o = 1$ y un coeficiente de amortiguamiento de $\gamma = 0.52$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
@@ -269,14 +271,14 @@ cuya forma de la señal del oscilardo y el espectro de potencias correspondiente
 
 Además, como puede observarse al comparar la representación de los dos conjuntos de parámetros, la variación de los parámetros del oscilador anarmónico produce formas de onda muy diferentes entre sí con constituyentes de frecuencia distintas muy distintas. Esto no ocurre en los casos estudiados anteriormente en los cuales la variación de los parámetros produce la misma forma de onda, así como el mismo espectro de frecuencias, aunque, por supuesto, con magnitudes de amplitud y potencia distintas.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.75\linewidth]{caso_anarmonico_s1.pdf}
 \caption{Representación de la señal y espectro de potencias para un oscilador anarmónico forzado y amortiguado con $w_o = 1$, $w = 1$, $\gamma = 0.52$, $F_o = 0.516$, $w = 1.2$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
 \label{fig:caso_anarmonico_s1}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.75\linewidth]{caso_anarmonico_s2.pdf}
 \caption{Representación de la señal y espectro de potencias para un oscilador anarmónico forzado y amortiguado con $w_o = 1$, $w = 1$, $\gamma = 0.48$, $F_o = 0.5162$, $w = 1.3$. La señal ha sido obtenida mediante la aplicación del método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$.}
@@ -288,18 +290,29 @@ Además, como puede observarse al comparar la representación de los dos conjunt
 \section{Anexos}
 
 \subsection{Implementación de los métodos numéricos}
-La implementación de los diferentes métodos numéricos utilizandos en este trabajo ha sido realizada utilizando el lenguaje de programación Python (http://www.python.org/). Se incluye a continuación un listado del código de los diferentes métodos numéricos utilizados
+La implementación de los diferentes métodos numéricos utilizandos en este trabajo ha sido realizada utilizando el lenguaje de programación Python (http://www.python.org/). La generación de las gráficas se ha llevado a cabo utilizando la librería \textit{matplotlib} (http://matplotlib.org/) para este lenguaje de programación. Se incluye a continuación un listado del código de los diferentes métodos numéricos utilizados
 
 \begin{figure}
-\begin{lstlisting}
-def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
+\begin{lstlisting}[language=Python]
+def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0):
+	''' Implementación del método de Runge-Kutta para sistemas de dos
+		ecuaciones diferenciales.
+		Devuelve una lista de tuplas (t, x, y) con los resultados de
+		la integración paso a paso.
+		h : paso de integración
+		n : número de pasos de la integración
+		f : función f(x, y, t)
+		g : función g(x, y, t)
+		x_0, y_0, t_0 : condiciones iniciales
+ 	'''
 	t = t_0 # condiciones iniciales del sistema
 	x = x_0
 	y = y_0
 
 	tabla = [(t, x, y)]
 
-	for i in range(n + 1): #bucle hasta el numero de pasos indicado
+	#bucle para obtener una muestra de n valores
+	for i in range(n):
 		k1 = h * f(x, y, t) #cálculo de los coeficientes
 		l1 = h * g(x, y, t)
 
@@ -325,6 +338,174 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
 \end{lstlisting}
 \caption{Código de la implementación del método Runge-Kutta de cuarto orden para la resolución de un sistema de de dos ecuaciones diferenciales}
 \label{runge_kutta_code}
+\end{figure}
+
+\begin{figure}
+\begin{lstlisting}[language=Python]
+# -*- coding: utf8 -*-
+
+import cmath
+import math
+
+def tfd(x):
+	'''
+		Implementación de la Transformada de Fourier Discreta.
+		En el calculo se utiliza la aritmética de numéros complejos
+		proporcionada por Python y la librería cmath que incluye otras
+		funciones matemáticas para números complejos.
+		Devuelve el espectro de frecuencias en una lista
+		x : lista que contiene las muestras de un periodo de la señal
+	'''
+	N = len(x)
+	espectro_freq = []
+	for n in range(N):
+		c = 0
+		for k in range(N):
+			c += x[k] * cmath.exp(-2j * cmath.pi * n * k / N)
+		espectro_freq.append(c)
+
+	return espectro_freq 
+
+def tfd_promedio(fourier_periodos, muestras_periodo, muestra):
+	'''
+		Calcula la Transformada de Fourier Discreta promediada
+		entre varios periodos de la señal.
+		Devuelve una lista con la Transformada de Fourier Discreta
+		promediada sobre el número de periodos.
+		fourier_periodos: el número de periodos de la señal
+		muestras_periodo: el número de muestras en cada periodo
+		muestras: lista que contiene la muestra a promediar
+	'''
+	fourier_promediado = [0] * muestras_periodo
+	# se obtiene la Transformada de Fourier Discreta para cada periodo
+	for i in range(fourier_periodos):
+		# se determina el inicio y fin de cada periodo
+		inicio_periodo = i * (muestras_periodo - 1)
+		final_periodo = inicio_periodo + muestras_periodo
+		#calculo de la transformada de Fourier del periodo actual
+		fourier = tfd(muestra[inicio_periodo:final_periodo])
+		#se acumulan los coeficientes promediados obtenidos por cada periodo
+		for k, c in enumerate(fourier):
+			fourier_promediado[k] += c / float(fourier_periodos)
+
+	return fourier_promediado
+\end{lstlisting}
+\caption{Código de la implementación de la Transformada de Fourier Discreta y de su cálculo promediado sobre
+varios periodos}
+\end{figure}
+
+\begin{figure}
+\begin{lstlisting}[language=Python]
+def muestrear(sol_numerica, muestras_periodo, pasos_periodo):
+	'''
+		LLeva a cabo un muestreo de una señal.
+		Devuelve una lista con la muestra resultante.
+		sol_numerica: contiene la solución numerica obtenida de la
+		aplicación del algoritmo de Runge-Kutta
+		muestras_periodo: el número de muestras por periodo a obtener
+		pasos_periodo: el número de pasos que contiene cada perido
+	'''
+	#se obtienen un muestreo de valores por periodo muestras_periodo
+	paso = int(math.ceil(pasos_periodo) / float(muestras_periodo - 1))
+	muestra = []
+	for i, (_, x, _) in enumerate(sol_numerica):
+		if i % paso == 0:
+			muestra.append(x)
+
+	return muestra
+
+def espectro_pot(fourier):
+	'''
+		Calcula el espectro de potencia de una lista que contiene
+		la Transformada de Fourier Discreta. Utiliza la arimética de
+		números complejos proporcionada por el lenguaje Python.
+		Devuelve una lista con el espectro de potencias.
+		fourier: lista conteniendo la Transformada de Fourier Discreta.
+	'''
+	# se obtiene la potencia calculando el módulo de cada coeficiente complejo
+	espectro_potencia = []
+	for c in fourier:
+		p = (c * c.conjugate()).real
+		espectro_potencia.append(p)
+
+	return espectro_potencia
+\end{lstlisting}
+\caption{Implementación de funciones para obtener el muestreo de una señal y para el cálculo del espectro de
+potencias a partir de la Transformada de Fourier Discreta}
+\end{figure}
+
+\begin{figure}
+\begin{lstlisting}[language=python]
+# -*- coding: utf8 -*-
+import matplotlib.pyplot as plt
+import math
+from metodos import eq_diferenciales
+from metodos import transformada_fourier
+
+def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo, fichero=None):
+	periodo = 2.0 * math.pi # periodo de la señal periódica
+	n = int(num_periodos * periodo / h) # numero total de pasos de integración
+	#calculo de la tabla de integracion del sistema 
+	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0)
+
+	# se obtienen de la tabla de valores los vectores de tiempo, 
+	tiempo = []
+	numerica = []
+	for t, x, _ in sol_numerica:
+		tiempo.append(t)
+		numerica.append(x)
+
+	# se utiliza matplotlib para generar la gráfica de la señal
+	plt.subplot(211)
+	plt.plot(tiempo, numerica)
+	plt.title('Movimiento del %s' % titulo)
+	plt.xlabel('Tiempo [s]')
+	plt.ylabel('x(t)')
+
+	# continúa ....
+
+\end{lstlisting}
+\caption{Implementación del código para la visualización de la señal y el espectro de potencia.
+Se ha utilizado la librería matplotlib para la generación de las gráficas.}
+\end{figure}
+
+\begin{figure}
+\begin{lstlisting}[language=Python]
+	# continuación de la visualización gráfica
+
+	# se calcula la señal para 50 periodos
+	fourier_periodos = 50
+	pasos_periodo = periodo / h
+	n = int(fourier_periodos * pasos_periodo) # numero de pasos de integración para muestrear fourier_periodos
+	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0)
+
+	#se define el número de muestras por periodo
+	muestras_periodo = 4
+	#se muestrea la señal
+	muestra = transformada_fourier.muestrear(sol_numerica, muestras_periodo, pasos_periodo)
+	#se obtiene su transformada de Fourier
+	fourier = transformada_fourier.tfd_promedio(fourier_periodos, muestras_periodo, muestra)
+	# se calcula su espectro de potencia
+	espectro_potencia = transformada_fourier.espectro_pot(fourier)
+
+	#generación de la gráfica de espectro de potencias
+	n = range(len(espectro_potencia))
+	plt.subplot(212)
+	plt.plot(n, espectro_potencia, 'r^')
+	plt.vlines(n, [0], espectro_potencia, 'r')
+	plt.title('Espectro de potencia')
+	plt.xlabel('Frecuencias constitutivas [n]')
+	plt.xticks(n)
+	plt.ylabel('Potencia [J/s]')
+	plt.tight_layout()
+	#escritura de gráfica en fichero
+	if fichero is not None:
+		plt.savefig(fichero)
+	#visualización de la gráfica
+	plt.show()
+\end{lstlisting}
+\caption{Implementación del código para la visualización de la señal y el espectro de potencia.
+Se ha utilizado la librería matplotlib para la generación de las gráficas.}
 \end{figure}
 
 \end{document}
