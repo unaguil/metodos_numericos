@@ -17,7 +17,17 @@ def runge_kutta(h, n, f, x_0, y_0, verbose=False):
 
 	return x, y
 
-def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
+def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0):
+	''' Implementación del método de Runge-Kutta para sistemas de dos
+		ecuaciones diferenciales.
+		Devuelve una lista de tuplas (t, x, y) con los resultados de
+		la integración paso a paso.
+		h : paso de integración
+		n : número de pasos de la integración
+		f : función f(x, y, t)
+		g : función g(x, y, t)
+		x_0, y_0, t_0 : condiciones iniciales
+ 	'''
 	t = t_0 # condiciones iniciales del sistema
 	x = x_0
 	y = y_0
@@ -43,8 +53,6 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0, verbose=False):
 		x = x + (k1 + 2 * k2 + 2 * k3 + k4) / 6
 		y = y + (l1 + 2 * l2 + 2 * l3 + l4) / 6
 		t += h
-
-		# print "%.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f %.5f" % (t, x, y, k1, k2, k3, k4, l1, l2, l3, l4)
 
 		#los resultados son almacenados en una lista de elementos (t, x, y)
 		tabla.append((t, x, y))
