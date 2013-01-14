@@ -276,9 +276,22 @@ utilizando nuevamente las condiciones iniciales y aplicando los métodos numéri
 	\item S2: $\gamma = 0.48$, $F_o = 0.5162$, $w = 1.3$
 \end{itemize}
 
-cuya forma de la señal del oscilardo y el espectro de potencias correspondiente ha sido representado en las figuras \ref{fig:caso_anarmonico_s1} y \ref{fig:caso_anarmonico_s2}, respectivamente. Como puede observarse en las figuras, en ambos casos, la señal posee un perfil que varía en el tiempo de una forma no periódica, produciéndose perturbaciones en la amplitud de la misma durante el tiempo. Por otro lado, el espectro de potencias posee varias componentes que constiyuen la forma de la onda final. 
+Además, en ambos casos se ha utilizado un valor para parámetro $\beta=1.09$ con objeto de obtener un comportamiento aperiódico claro en una representación en pocos periodos.
 
-Además, como puede observarse al comparar la representación de los dos conjuntos de parámetros, la variación de los parámetros del oscilador anarmónico produce formas de onda muy diferentes entre sí con constituyentes de frecuencia distintas muy distintas. Esto no ocurre en los casos estudiados anteriormente en los cuales la variación de los parámetros produce la misma forma de onda, así como el mismo espectro de frecuencias, aunque, por supuesto, con magnitudes de amplitud y potencia distintas.
+\subsubsection{Conjunto de parámetros S1}
+Al utilizar la configuración de parámetros dada y aplicar el método de resolución de ecuaciones diferenciales de Runge-Kutta al sistema de ecuaciones diferenciales se ha constatado que existe un problema en el mismo: la ecuación es inestable y al llegar a cierto instante de tiempo se produce un estallido y un crecimiento muy rápido que produce valores númericos no representables. En la figura \ref{fig:caso_anarmonico_s1} se observa la representación obtenida hasta que se produce el comportamiento inestable detectado. En esta situación es imposible calcular un número suficiente de periodos que permita aplicar el análisis del espectro de potencias llevado a cabo en los casos anteriores.
+
+La detección del comportamiento anómalo de la función se ha implementado comprobando si en algún momento se obtiene un valor para $x(t)$ definido como NaN. Esto significa que la ecuación se ha vuelto inestable y ha comenzado a crecer en magnitud de forma descontrolada. Esto puede comprobarse en los listados de código incluidos en el anexo al trabajo.
+
+Con objeto de resolver el problema se ha probado a modificar el tamaño del paso de integración, pero no se han obtenido resultados satisfactorios. La inestabilidad en el sistema de ecuaciones se debe a la introducción del factor no lineal en la ecuación y a su correspondiente coeficiente, que produce que dicho término crezca de una forma mucho más rápida que los otros. Las ecuaciones que contienen términos de este tipo se conocen como \textit{ecuaciones rígidas}. 
+
+La solución al problema de la rigidez de las soluciones pasa por la utilización de otros métodos numéricos que tengan produzcan un comportamiento más estable en las ecuaciones integradas. Por ejemplo, se ha comprobado en internet que existen métodos como el 
+\textit{Backward Euler Method} y que podría ser posible aplicarlo a sistemas de ecuaciones diferenciales. El método es similar al método de Euler, pero utiliza un representación impĺícita de la función diferencial que debe ser resuelta como un sistema de ecuaciones, en el caso lineal. Sin embargo, el autor de este trabajo no ha conseguido representar correctamente el sistema de ecuaciones diferenciales en la forma necesaria para la aplicación del método. 
+
+\subsubsection{Conjunto de parámetros S2}
+Al utilizar el segundo conjunto de parámetros ha sido posible calcular un número de periodos suficiente como para llevar a cabo la integración de la señal durante los periodos necesarios para realizar el análisis de frecuencia promediado. Además, se ha llevado a cabo análisis de Fourier utilizando una frecuencia de señal de $w=1.3$, igual a la de la fuerza periódica externa aplicada al oscilador.
+
+En este caso puede observarse que aparece una nueva componente de frecuencia 0 que es debida al comportamiento no periódico de la función de onda analizada.
 
 \begin{figure}
 \centering
