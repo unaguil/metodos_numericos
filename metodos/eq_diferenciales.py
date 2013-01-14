@@ -1,5 +1,7 @@
 # -*- coding: utf8 -*- 
 
+import math
+
 def runge_kutta(h, n, f, x_0, y_0, verbose=False):
 	x = x_0
 	y = y_0
@@ -53,6 +55,10 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0):
 		x = x + (k1 + 2 * k2 + 2 * k3 + k4) / 6
 		y = y + (l1 + 2 * l2 + 2 * l3 + l4) / 6
 		t += h
+
+		if math.isnan(x) or math.isnan(y):
+			print 'Comportamiento anómalo detectado: t = ', t
+			break
 
 		#los resultados son almacenados en una lista de elementos (t, x, y)
 		tabla.append((t, x, y))
