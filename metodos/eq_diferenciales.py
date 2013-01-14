@@ -56,6 +56,7 @@ def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0):
 		y = y + (l1 + 2 * l2 + 2 * l3 + l4) / 6
 		t += h
 
+		#comprobación de comportamiento anómalo
 		if math.isnan(x) or math.isnan(y):
 			print 'Comportamiento anómalo detectado: t = ', t
 			break
