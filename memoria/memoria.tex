@@ -308,7 +308,14 @@ En este caso puede observarse que aparece una nueva componente de frecuencia 0 q
 \end{figure}
 
 \section{Conclusiones}
+La realización de este trabajo ha servido para comprobar el funcionamiento real de un método de integración aplicado a un sistema de ecuaciones diferenciales. Ha permitido comprobar cómo de importante es la elección del paso de integración correcto para obtener una la aproximación requerida del método numérico.
 
+Por otro lado, se ha conocido cuáles son las limitaciones de los métodos de integración de tipo explícito, como el método de Runge-Kutta utilizado, cuando se aplican a ecuaciones rígidas. Aunque no se ha podido comprobar una implementación de un método implícito, se ha comprobado la existencia de este tipo de métodos y su mayor adecuación para la resolución de ecuaciones diferenciales en dichos casos.
+
+Además, el trabajo a permitido estudiar el funcionamiento de la Transformada de Fourier Discreta y, mediante algunas pruebas realizadas durante la realización del trabajo, comprobar que el incremento en el número de muestras de la señal produce un incremento notable en el tiempo de computación de la misma. Aunque no se ha llegado a implementar, se ha comprobado que la solución a este problema es la Tránsformada Rápida de Fourier Discreta mediante la utilización de una implementación de la misma proporcionada por la librería \textit{numpy} para Python.
+Se ha comprobado que los resultados obtenidos con la utilización de dicha librería concuerdan con la implementación directa de la transformada discreta, mientras que los tiempos de la primera son muchísimo más pequeños que los del código utilizado en el trabajo.
+
+\pagebreak
 \section{Anexos}
 
 \subsection{Implementación de los métodos numéricos}
