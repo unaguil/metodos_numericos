@@ -10,7 +10,7 @@ def f(x, y, t):
 	return y
 
 def g(x, y, t):
-	return 0.5162 * math.cos(1.3 * t) - x - 0.48 * y - 1.08 * (x * x)
+	return 0.5162 * math.cos(1.3 * t) - x - 0.48 * y - 1.09 * (x * x)
 
 h = 0.01 # configuración del paso de integración
 num_periodos = 8 #periodos de la señal visualizados
