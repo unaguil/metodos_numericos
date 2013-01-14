@@ -173,7 +173,17 @@ $\gamma=0.52$, $\beta=1$, $F_o = 0.516$ y $w=1.2$. La tabla muestra que los valo
 \end{table}
 
 \subsection{Transformada de Fourier Discreta}
-Para el cálculo del espectro de potencias de las distintas señales producidas en cada uno de los casos del oscilador no lineal se ha utililizado la Transformada de Fourier Discreta. Este método de análisis matemático permite descomponer una señal discreta y periódica en el tiempo en un conjunto de señales sinusoidales constitutivas. Su finalidad es aproximar una señal periódica mediante una serie de armónicos constituyentes de distintas frecuencias.
+Para el cálculo del espectro de potencias de las distintas señales producidas en cada uno de los casos del oscilador se ha aplicado la Transformada de Fourier Discreta. Este método de análisis matemático permite descomponer una señal discreta, y periódica en el tiempo, en un conjunto de señales sinusoidales constitutivas. Su finalidad es aproximar la señal periódica mediante una serie de ondas sinusoidales con frecuencias definidas. Su uso implica que se analiza un único periodo de la señal periódica de la que se ha obtenido una muestra de N valores.
+
+En concreto, la Transformada de Fourier Discreta aplicada a un conjunto de N valores $x(t)$, dentro de un mismo periodo de la señal y medidos en instantes equiespaciados donde $t = t_o + \Delta{t}$ dado se calcula como:
+
+\begin{equation}
+	F(k) = \sum\limits_{n=0}^{N-1} x(t) \exp(-i \frac{2\pi{}nk}{N}), n = 0, 1, 2, \ldots, N -1
+\end{equation}
+
+Como puede observarse, los resultados de la aplicación de esta ecuación a una muestra de N puntos solamente proporciona información sobre N frecuencias constitutivas, de múltiplos $n = 0, 1, 2, \ldots, N -1$ de una frecuencia base. Esto tiene que ver con la teoría de la información y el proceso de muestreo de una señal periódica.
+
+Hay que tener en cuenta que este cálculo, tal y como ha sido implementado en este trabajo, requiere $O(N^2)$ operaciones, por lo que para tamaños de muestras grandes el tiempo de operaciones a realizar puede resultar muy elevado. En este caso, la implementación de la Transformada de Fourier Discreta se ha llevado a cabo de forma directa, debido a que a durante la realización del análisis espectral de las señales del oscilador se ha obtenido un conjunto de 4 puntos por periodo, promediada sobre 50 periodos de la señal. Este conjunto de señales puede ser transformado en un tiempo aceptable en un ordenador moderno. En dichos casos es recomendable utilizar la Transformada Rápida de Fourier Discreta, que utiliza simetrías durante el cálculo de los coeficientes de la señal para mejorar el número de operaciones requeridas hasta $O(N\log(N))$.
 
 \section{Casos de estudio}
 Se exponen a continuación los resultados del estudio realizado tanto de la forma de la señal como del espectro de potencias para cada uno de los siguientes casos de la ecuación \ref{ecuacion-diferencial}:
