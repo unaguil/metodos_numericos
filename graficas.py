@@ -6,8 +6,8 @@ import math
 from metodos import eq_diferenciales
 from metodos import transformada_fourier
 
-def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo, fichero=None):
-	periodo = 2.0 * math.pi # periodo de la señal periódica
+def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo, freq=1.0, fichero=None):
+	periodo = 2.0 * math.pi / freq # periodo de la señal periódica
 	n = int(num_periodos * periodo / h) # numero de pasos de integración para dibujar num_periodos
 
 	#calculo de la tabla de integracion del sistema 

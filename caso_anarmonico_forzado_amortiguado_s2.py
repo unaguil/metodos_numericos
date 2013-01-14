@@ -19,4 +19,4 @@ y_0 = 0.0 # condición inicial dx/dt(t_0) = 0
 t_0 = 0.0 # condición inicial t_0 = 0
 
 #cálculo y representación gráfica de la señal y la espectro de potencias
-graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador no lineal forzado y amortiguado - S2', 'memoria/caso_anarmonico_s2.pdf')
+graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador no lineal forzado y amortiguado - S2', freq=1.3, fichero='memoria/caso_anarmonico_s2.pdf')
