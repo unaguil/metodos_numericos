@@ -14,7 +14,6 @@ numberstyle=\footnotesize,
 basicstyle=\ttfamily\footnotesize,
 numbers=left,
 stepnumber=1,
-frame=shadowbox,
 breaklines=true,
 tabsize=4
 }
@@ -303,365 +302,56 @@ Además, como puede observarse al comparar la representación de los dos conjunt
 La implementación de los diferentes métodos numéricos utilizandos en este trabajo ha sido realizada utilizando el lenguaje de programación Python (http://www.python.org/). La generación de las gráficas se ha llevado a cabo utilizando la librería \textit{matplotlib} (http://matplotlib.org/) para este lenguaje de programación. Se incluye a continuación un listado del código de los diferentes métodos numéricos utilizados.
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-def runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0):
-	''' Implementación del método de Runge-Kutta para sistemas de dos
-		ecuaciones diferenciales.
-		Devuelve una lista de tuplas (t, x, y) con los resultados de
-		la integración paso a paso.
-		h : paso de integración
-		n : número de pasos de la integración
-		f : función f(x, y, t)
-		g : función g(x, y, t)
-		x_0, y_0, t_0 : condiciones iniciales
- 	'''
-	t = t_0 # condiciones iniciales del sistema
-	x = x_0
-	y = y_0
-
-	tabla = [(t, x, y)]
-
-	#bucle para obtener una muestra de n valores
-	for i in range(n):
-		k1 = h * f(x, y, t) #cálculo de los coeficientes
-		l1 = h * g(x, y, t)
-
-		k2 = h * f(x + k1 / 2, y + l1 / 2, t + h / 2)
-		l2 = h * g(x + k1 / 2, y + l1 / 2, t + h / 2)
-
-		k3 = h * f(x + k2 / 2, y + l2 / 2, t + h / 2)
-		l3 = h * g(x + k2 / 2, y + l2 / 2, t + h / 2)
-
-		k4 = h * f(x + k3, y + l3, t + h)
-		l4 = h * g(x + k3, y + l3, t + h)
-
-		#incremento de las variables dependientes (x, y)
-		# y de la independiente (t)
-		x = x + (k1 + 2 * k2 + 2 * k3 + k4) / 6
-		y = y + (l1 + 2 * l2 + 2 * l3 + l4) / 6
-		t += h
-
-		#los resultados son almacenados en una lista de elementos (t, x, y)
-		tabla.append((t, x, y))
-
-	return tabla
-\end{lstlisting}
+\lstinputlisting[language=Python, firstline=22, lastline=66]{../metodos/eq_diferenciales.py}
 \caption{Código de la implementación del método Runge-Kutta de cuarto orden para la resolución de un sistema de de dos ecuaciones diferenciales}
 \label{runge_kutta_code}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-# -*- coding: utf8 -*-
-
-import cmath
-import math
-
-def tfd(x):
-	'''
-		Implementación de la Transformada de Fourier Discreta.
-		En el calculo se utiliza la aritmética de numéros complejos
-		proporcionada por Python y la librería cmath que incluye otras
-		funciones matemáticas para números complejos.
-		Devuelve el espectro de frecuencias en una lista
-		x : lista que contiene las muestras de un periodo de la señal
-	'''
-	N = len(x)
-	espectro_freq = []
-	for n in range(N):
-		c = 0
-		for k in range(N):
-			c += x[k] * cmath.exp(-2j * cmath.pi * n * k / N)
-		espectro_freq.append(c)
-
-	return espectro_freq 
-
-def tfd_promedio(fourier_periodos, muestras_periodo, muestra):
-	'''
-		Calcula la Transformada de Fourier Discreta promediada
-		entre varios periodos de la señal.
-		Devuelve una lista con la Transformada de Fourier Discreta
-		promediada sobre el número de periodos.
-		fourier_periodos: el número de periodos de la señal
-		muestras_periodo: el número de muestras en cada periodo
-		muestras: lista que contiene la muestra a promediar
-	'''
-	fourier_promediado = [0] * muestras_periodo
-	# se obtiene la Transformada de Fourier Discreta para cada periodo
-	for i in range(fourier_periodos):
-		# se determina el inicio y fin de cada periodo
-		inicio_periodo = i * (muestras_periodo - 1)
-		final_periodo = inicio_periodo + muestras_periodo
-		#calculo de la transformada de Fourier del periodo actual
-		fourier = tfd(muestra[inicio_periodo:final_periodo])
-		#se acumulan los coeficientes promediados obtenidos por cada periodo
-		for k, c in enumerate(fourier):
-			fourier_promediado[k] += c / float(fourier_periodos)
-
-	return fourier_promediado
-\end{lstlisting}
-\caption{Código de la implementación de la Transformada de Fourier Discreta y de su cálculo promediado sobre varios periodos}
+\lstinputlisting[language=Python, firstline=1, lastline=41]{../metodos/transformada_fourier.py}
+\caption{Código de la implementación de la Transformada de Fourier Discreta y el muestreo de una señal sobre varios periodos}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-def muestrear(sol_numerica, muestras_periodo, pasos_periodo):
-	'''
-		LLeva a cabo un muestreo de una señal.
-		Devuelve una lista con la muestra resultante.
-		sol_numerica: contiene la solución numerica obtenida de la
-		aplicación del algoritmo de Runge-Kutta
-		muestras_periodo: el número de muestras por periodo a obtener
-		pasos_periodo: el número de pasos que contiene cada perido
-	'''
-	#se obtienen un muestreo de valores por periodo muestras_periodo
-	paso = int(math.ceil(pasos_periodo) / float(muestras_periodo - 1))
-	muestra = []
-	for i, (_, x, _) in enumerate(sol_numerica):
-		if i % paso == 0:
-			muestra.append(x)
-
-	return muestra
-
-def espectro_pot(fourier):
-	'''
-		Calcula el espectro de potencia de una lista que contiene
-		la Transformada de Fourier Discreta. Utiliza la arimética de
-		números complejos proporcionada por el lenguaje Python.
-		Devuelve una lista con el espectro de potencias.
-		fourier: lista conteniendo la Transformada de Fourier Discreta.
-	'''
-	# se obtiene la potencia calculando el módulo de cada coeficiente complejo
-	espectro_potencia = []
-	for c in fourier:
-		p = (c * c.conjugate()).real
-		espectro_potencia.append(p)
-
-	return espectro_potencia
-\end{lstlisting}
-\caption{Implementación de funciones para obtener el muestreo de una señal y para el cálculo del espectro de
-potencias a partir de la Transformada de Fourier Discreta}
+\lstinputlisting[language=Python, firstline=43, lastline=83]{../metodos/transformada_fourier.py}
+\caption{Código de la Transformada de Fourier Discreta promedio cálculo del espectro de potencia}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=python]
-# -*- coding: utf8 -*-
-import matplotlib.pyplot as plt
-import math
-from metodos import eq_diferenciales
-from metodos import transformada_fourier
-
-def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo, fichero=None):
-	periodo = 2.0 * math.pi # periodo de la señal periódica
-	n = int(num_periodos * periodo / h) # numero total de pasos de integración
-	#calculo de la tabla de integracion del sistema 
-	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0)
-
-	# se obtienen de la tabla de valores los vectores de tiempo, 
-	tiempo = []
-	numerica = []
-	for t, x, _ in sol_numerica:
-		tiempo.append(t)
-		numerica.append(x)
-
-	# se utiliza matplotlib para generar la gráfica de la señal
-	plt.subplot(211)
-	plt.plot(tiempo, numerica)
-	plt.title('Movimiento del %s' % titulo)
-	plt.xlabel('Tiempo [s]')
-	plt.ylabel('x(t)')
-
-	# continúa ....
-
-\end{lstlisting}
+\lstinputlisting[language=Python, firstline=1, lastline=28]{../graficas.py}
 \caption{Implementación del código para la visualización de la señal y el espectro de potencia.
 Se ha utilizado la librería matplotlib para la generación de las gráficas}
-\label{codigo_graficas_1}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-	# continuación de la visualización gráfica
-
-	# se calcula la señal para 50 periodos
-	fourier_periodos = 50
-	pasos_periodo = periodo / h
-	n = int(fourier_periodos * pasos_periodo) # numero de pasos de integración para muestrear fourier_periodos
-	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0)
-
-	#se define el número de muestras por periodo
-	muestras_periodo = 4
-	#se muestrea la señal
-	muestra = transformada_fourier.muestrear(sol_numerica, muestras_periodo, pasos_periodo)
-	#se obtiene su transformada de Fourier
-	fourier = transformada_fourier.tfd_promedio(fourier_periodos, muestras_periodo, muestra)
-	# se calcula su espectro de potencia
-	espectro_potencia = transformada_fourier.espectro_pot(fourier)
-
-	#generación de la gráfica de espectro de potencias
-	n = range(len(espectro_potencia))
-	plt.subplot(212)
-	plt.plot(n, espectro_potencia, 'r^')
-	plt.vlines(n, [0], espectro_potencia, 'r')
-	plt.title('Espectro de potencia')
-	plt.xlabel('Frecuencias constitutivas [n]')
-	plt.xticks(n)
-	plt.ylabel('Potencia [J/s]')
-	plt.tight_layout()
-	#escritura de gráfica en fichero
-	if fichero is not None:
-		plt.savefig(fichero)
-	#visualización de la gráfica
-	plt.show()
-\end{lstlisting}
-\caption{Implementación del código para la visualización de la señal y el espectro de potencia.
+\lstinputlisting[language=Python, firstline=29, lastline=61, firstnumber=29]{../graficas.py}
+\caption{Continuación de la implementación del código para la visualización de la señal y el espectro de potencia.
 Se ha utilizado la librería matplotlib para la generación de las gráficas}
-\label{codigo_graficas_2}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-# -*- coding: utf8 -*- 
-
-from metodos import eq_diferenciales
-from metodos import transformada_fourier
-import math
-import graficas
-
-#definición de las funciones del sistema de ecuaciones diferenciales
-def f(x, y, t):
-	return y
-
-def g(x, y, t):
-	return -x
-
-h = 0.01 # configuración del paso de integración
-num_periodos = 5 #periodos de la señal visualizados
-x_0 = 0.0 # condición inicial x(t_0) = 0
-y_0 = 0.0 # condición inicial dx/dt(t_0) = 0
-t_0 = 0.0 # condición inicial t_0 = 0
-
-#cálculo y representación gráfica de la señal y la espectro de potencias
-graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador lineal no forzado ni amortiguado', 'memoria/caso_lineal.pdf')
-\end{lstlisting}
-\caption{Código del caso lineal no amortiguado ni forzado que utiliza la funcionalidad definida en las
-figuras \ref{codigo_graficas_1} y \ref{codigo_graficas_2}}
+\lstinputlisting[language=Python]{../caso_forzado.py}
+\caption{Código del caso lineal no amortiguado ni forzado}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-# -*- coding: utf8 -*- 
-
-from metodos import eq_diferenciales
-from metodos import transformada_fourier
-import math
-import graficas
-
-#definición de las funciones del sistema de ecuaciones diferenciales
-def f(x, y, t):
-	return y
-
-def g(x, y, t):
-	return math.cos(t) - x
-
-h = 0.01 # configuración del paso de integración
-num_periodos = 5 #periodos de la señal visualizados
-x_0 = 0.0 # condición inicial x(t_0) = 0
-y_0 = 0.0 # condición inicial dx/dt(t_0) = 0
-t_0 = 0.0 # condición inicial t_0 = 0
-
-#cálculo y representación gráfica de la señal y la espectro de potencias
-graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador lineal forzado no amortiguado', 'memoria/caso_forzado.pdf')
-\end{lstlisting}
-\caption{Código del caso lineal forzado pero no amortiguado que utiliza la funcionalidad definida en las
-figuras \ref{codigo_graficas_1} y \ref{codigo_graficas_2}}
+\lstinputlisting[language=Python]{../caso_forzado.py}
+\caption{Código del caso lineal forzado pero no amortiguado}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-# -*- coding: utf8 -*- 
-
-from metodos import eq_diferenciales
-from metodos import transformada_fourier
-import math
-import graficas
-
-#definición de las funciones del sistema de ecuaciones diferenciales
-def f(x, y, t):
-	return y
-
-def g(x, y, t):
-	return math.cos(t) - x - 0.52 * y
-
-h = 0.01 # configuración del paso de integración
-num_periodos = 5 #periodos de la señal visualizados
-x_0 = 0.0 # condición inicial x(t_0) = 0
-y_0 = 0.0 # condición inicial dx/dt(t_0) = 0
-t_0 = 0.0 # condición inicial t_0 = 0
-
-#cálculo y representación gráfica de la señal y la espectro de potencias
-graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador lineal forzado y amortiguado', 'memoria/caso_forzado_amortiguado.pdf')
-\end{lstlisting}
-\caption{Código del caso lineal forzado y amortiguado que utiliza la funcionalidad definida en las
-figuras \ref{codigo_graficas_1} y \ref{codigo_graficas_2}}
+\lstinputlisting[language=Python]{../caso_forzado_amortiguado.py}
+\caption{Código del caso lineal forzado y amortiguado}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-# -*- coding: utf8 -*- 
-
-from metodos import eq_diferenciales
-from metodos import transformada_fourier
-import math
-import graficas
-
-#definición de las funciones del sistema de ecuaciones diferenciales
-def f(x, y, t):
-	return y
-
-def g(x, y, t):
-	return 0.516 * math.cos(1.2 * t) - x - 0.52 * y - 1.08 * (x * x)
-
-h = 0.01 # configuración del paso de integración
-num_periodos = 8 #periodos de la señal visualizados
-x_0 = 0.0 # condición inicial x(t_0) = 0
-y_0 = 0.0 # condición inicial dx/dt(t_0) = 0
-t_0 = 0.0 # condición inicial t_0 = 0
-
-#cálculo y representación gráfica de la señal y la espectro de potencias
-graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador no lineal forzado y amortiguado - S1', 'memoria/caso_anarmonico_s1.pdf')
-\end{lstlisting}
-\caption{Código del caso no lineal forzado y amortiguado para el conjunto de parámetros S1 que utiliza la funcionalidad definida en las
-figuras \ref{codigo_graficas_1} y \ref{codigo_graficas_2}}
+\lstinputlisting[language=Python]{../caso_anarmonico_forzado_amortiguado_s1.py}
+\caption{Código del caso no lineal forzado y amortiguado para el conjunto de parámetros S1}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}[language=Python]
-# -*- coding: utf8 -*- 
-
-from metodos import eq_diferenciales
-from metodos import transformada_fourier
-import math
-import graficas
-
-#definición de las funciones del sistema de ecuaciones diferenciales
-def f(x, y, t):
-	return y
-
-def g(x, y, t):
-	return 0.5162 * math.cos(1.3 * t) - x - 0.48 * y - 1.08 * (x * x)
-
-h = 0.01 # configuración del paso de integración
-num_periodos = 8 #periodos de la señal visualizados
-x_0 = 0.0 # condición inicial x(t_0) = 0
-y_0 = 0.0 # condición inicial dx/dt(t_0) = 0
-t_0 = 0.0 # condición inicial t_0 = 0
-
-#cálculo y representación gráfica de la señal y la espectro de potencias
-graficas.mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, 'oscilador no lineal forzado y amortiguado - S2', 'memoria/caso_anarmonico_s2.pdf')
-\end{lstlisting}
-\caption{Código del caso no lineal forzado y amortiguado para el conjunto de parámetros S2 que utiliza la funcionalidad definida en las
-figuras \ref{codigo_graficas_1} y \ref{codigo_graficas_2}}
+\lstinputlisting[language=Python]{../caso_anarmonico_forzado_amortiguado_s2.py}
+\caption{Código del caso no lineal forzado y amortiguado para el conjunto de parámetros S2}
 \end{figure}
 
 \end{document}
