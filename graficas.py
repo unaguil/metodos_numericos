@@ -7,8 +7,11 @@ from metodos import eq_diferenciales
 from metodos import transformada_fourier
 
 def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo, freq=1.0, fichero=None):
-	periodo = 2.0 * math.pi / freq # periodo de la señal periódica
-	n = int(num_periodos * periodo / h) # numero de pasos de integración para dibujar num_periodos
+	# periodo de la señal periódica
+	periodo = 2.0 * math.pi / freq 
+
+	# numero total de pasos de integración
+	n = int(num_periodos * periodo / h) 
 
 	#calculo de la tabla de integracion del sistema 
 	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0)
@@ -30,7 +33,9 @@ def mostrar_graficas(h, num_periodos, f, g, x_0, y_0, t_0, titulo, freq=1.0, fic
 	# se calcula la señal para 50 periodos
 	fourier_periodos = 50
 	pasos_periodo = periodo / h
-	n = int(fourier_periodos * pasos_periodo) # numero de pasos de integración para muestrear fourier_periodos
+
+	# numero de pasos de integración para muestrear fourier_periodos
+	n = int(fourier_periodos * pasos_periodo) 
 	sol_numerica = eq_diferenciales.runge_kutta_sistema(h, n, f, g, x_0, y_0, t_0)
 
 	#se define el número de muestras por periodo
