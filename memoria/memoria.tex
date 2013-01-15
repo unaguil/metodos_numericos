@@ -442,6 +442,16 @@ produce el comportamiento inestable detectado. En esta situación es imposible
 calcular un número suficiente de periodos que permita aplicar el análisis del
 espectro de potencias llevado a cabo en los casos anteriores.
 
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{caso_anarmonico_s1.pdf}
+\caption{Representación de la señal y el espectro de potencias de un oscilador
+anarmónico forzado y amortiguado con $w_o = 1$, $w = 1$, $\gamma = 0.52$,
+$F_o = 0.516$, $w = 1.2$. La señal ha sido obtenida mediante la aplicación del
+método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$}
+\label{fig:caso_anarmonico_s1}
+\end{figure}
+
 La detección del comportamiento anómalo de la función se ha implementado
 comprobando si en algún momento se obtiene un valor para $x(t)$ definido 
 como NaN. Esto significa que la ecuación se ha vuelto inestable y ha comenzado 
@@ -484,16 +494,6 @@ analizada.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.75\linewidth]{caso_anarmonico_s1.pdf}
-\caption{Representación de la señal y el espectro de potencias de un oscilador
-anarmónico forzado y amortiguado con $w_o = 1$, $w = 1$, $\gamma = 0.52$,
-$F_o = 0.516$, $w = 1.2$. La señal ha sido obtenida mediante la aplicación del
-método de Runge-Kutta de cuarto orden y con un paso de integración $h = 0.01$}
-\label{fig:caso_anarmonico_s1}
-\end{figure}
-
-\begin{figure}
-\centering
 \includegraphics[width=0.75\linewidth]{caso_anarmonico_s2.pdf}
 \caption{Representación de la señal y el espectro de potencias de un oscilador
 anarmónico forzado y amortiguado con $w_o = 1$, $w = 1$, $\gamma = 0.48$,
@@ -528,9 +528,7 @@ librería concuerdan con la implementación directa de la transformada discreta,
 mientras que los tiempos de la Transformada Rápida de Fourier son muchísimo más
 pequeños que los del código utilizado en el trabajo.
 
-\pagebreak
 \section{Anexos}
-
 \subsection{Implementación de los métodos numéricos}
 La implementación de los diferentes métodos numéricos desarrollados en este trabajo
 ha sido realizada utilizando el lenguaje de programación Python
