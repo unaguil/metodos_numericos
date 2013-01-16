@@ -470,11 +470,12 @@ métodos númericos de integración
 La solución al problema de la rigidez de las ecuaciones requiere la utilización
 de otros métodos numéricos que produzcan un comportamiento más estable en las
 ecuaciones integradas. Por ejemplo, se ha constatado en internet que existen
-métodos como el \textit{Backward Euler Method} que pueden ser aplicados a
-sistemas de ecuaciones diferenciales. Esta solución es similar al método de
-Euler, pero utiliza un representación impĺícita de la función diferencial y la
-construcción de un sistema de ecuaciones que debe ser resuelto mediante algún
-metodo (p.e. el método de Newton o el del punto fijo). 
+métodos como el \textit{Backward Euler Method}
+\footnote{http://en.wikipedia.org/wiki/Backward\_Euler\_method } que pueden ser
+aplicados a sistemas de ecuaciones diferenciales. Esta solución es similar al
+método de Euler, pero utiliza un representación impĺícita de la función
+diferencial y la construcción de un sistema de ecuaciones que debe ser resuelto
+mediante algún metodo (p.e. el método de Newton o el del punto fijo). 
 
 Sin embargo, el autor de este trabajo no ha conseguido representar correctamente
 el sistema de ecuaciones diferenciales en una forma implícita para la aplicación
@@ -528,7 +529,7 @@ librería concuerdan con la implementación directa de la transformada discreta,
 mientras que los tiempos de la Transformada Rápida de Fourier son muchísimo más
 pequeños que los del código utilizado en el trabajo.
 
-\section{Anexos}
+\section{Anexo}
 \subsection{Implementación de los métodos numéricos}
 La implementación de los diferentes métodos numéricos desarrollados en este trabajo
 ha sido realizada utilizando el lenguaje de programación Python
@@ -536,6 +537,14 @@ ha sido realizada utilizando el lenguaje de programación Python
 usando la librería \textit{matplotlib} (http://matplotlib.org/) para este
 lenguaje de programación. Se incluye a continuación un listado del código de los
 diferentes métodos numéricos utilizados.
+
+Para el desarrollo del código de la Transformada de Fourier Discreta y del
+cálculo del espectro de potencias se utilizado la librería \textit{cmath}
+\footnote{http://docs.python.org/2/library/cmath.html}, que proporciona
+funciones matemáticas para su uso con números complejos. Aunque Python incorpora
+soporte nativo para la aritmética de números complejos, la librería usual de
+funciones matemáticas \textit{math}\footnote{http://docs.python.org/2/library/math.html}
+no proporciona cálculos para este tipo de números.
 
 \begin{figure}
 \inputminted[linenos, firstline=22, lastline=66, fontsize=\footnotesize]{python}
