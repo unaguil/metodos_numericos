@@ -72,7 +72,7 @@ integración constante.
 Como el enunciado del trabajo requiere la aplicación de un método numérico de
 cuarto orden, se ha utilizado el método \textit{Runge-Kutta} de dicho orden
 \footnote{página 460 del libro de Gerald \& Wheatley \textit{Análisis numérico
-con aplicaciones.}}. En el método de Runge-Kutta, aplicado a la resolución de
+con aplicaciones}.}. En el método de Runge-Kutta, aplicado a la resolución de
 una ecuación diferencial del tipo $\frac{dy}{dx}$, el incremento en $y$ no es
 proporcional unicamente al valor de la derivada en el punto anterior, sino a un
 promedio ponderado de varias estimaciones de dicho incremento. En el caso
@@ -112,7 +112,8 @@ Para poder aplicar el método anterior a la resolución numérica de ecuaciones
 diferenciales de segundo grado, como es el caso del oscilador anarmónico, es
 necesario, primeramente, llevar a cabo una descomposición de la ecuación
 planteada en un sistema de dos ecuaciones diferenciales de primer grado.
-\footnote{páginas 477-478 del libro de Gerald \& Wheatley.}.
+\footnote{páginas 477-478 del libro de Gerald \& Wheatley \textit{Análisis
+numérico con aplicaciones}.}.
 
 En el caso de la ecuación (\ref{ecuacion-diferencial}) del problema estudiado,
 la realización de la substitución $\frac{dx}{dt} = y$, permite obtener el
@@ -132,7 +133,8 @@ utilizarán para la aproximación del sistema.
 
 Por otro lado, el método de Runge-Kutta explicado anteriormente debe ser
 modificado para poder ser aplicado al sistema de ecuaciones diferenciales de
-forma correcta\footnote{página 480 del libro de Gerald \& Wheatley.}. 
+forma correcta\footnote{página 480 del libro de Gerald \& Wheatley
+\textit{Análisis numérico con aplicaciones}.}. 
 
 En el metodo para un sistema de ecuaciones se alterna en la obtención de las
 constantes $k_n, l_n$ para cada una de las ecuaciones. Además, se utilizan los
@@ -194,7 +196,7 @@ definidas en la sección \ref{segundo_grado} con las condiciones iniciales
 $x(0) = \frac{dx}{dt}(0) = 0$. En la tabla \ref{tab:precision} se recogen
 resultados obtenidos cuando se reduce el paso de integración a la mitad. Como
 puede observarse, los resultados mejoran hasta que convergen hasta siete
-decimales cuando el paso de integración se cambia de $h = 0.01$ a $h=0.005$.
+decimales cuando el paso de integración se cambia de $h = 0.01$ a $h=0.005$. 
 
 La precisión de siete decimales es suficiente para llevar a cabo el estudio de
 los diferentes casos del oscilador anarmónico. Debido a que se obtiene la misma
@@ -232,7 +234,9 @@ t & $h = 0.08$ & $h = 0.04$ & $h = 0.02$ & $h = 0.01$ & $h = 0.005$ \\
 \caption{Estudio de la precisión de la solución para distintos valores del paso
 de integración $h$. Se han utilizado los parámetros $\gamma=0.52$, $\beta=1$,
 $F_o = 0.516$ y $w=1.2$. La tabla muestra que los valores convergen hasta el
-séptimo decimal en los casos en que $h = 0.01$ y $h=0.005$}
+séptimo decimal en los casos en que $h = 0.01$ y $h=0.005$. Se ha representado
+únicamente un periodo y se han muestreado valores cada $\Delta{t} = 0.4$ de la
+tabla de integración obtenida tras la aplicación del método Runge-Kutta}
 \label{tab:precision}
 \end{table}
 
