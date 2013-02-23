@@ -3,6 +3,7 @@
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage{a4wide}
 
 \title{Examen Métodos Numéricos I \\ 2ª Semana Febrero 2013}
@@ -319,5 +320,50 @@ R_4(x) = 2 + 0.1^2 = 2.010000~~~e_r = 4 \cdot 10^{-6}
 \end{align*}
 
 \section*{Problema 4}
+El método de Euler modificado comienza estimando un valor provisional para la
+función $y(t+dt)$ usando la ecuación de la derivada. Así
+\begin{equation*}
+ y_{n+1} = y_n + hy^{'}_n
+\end{equation*}  
+Esta estimación se utiliza para obtener el valor de la derivada de la función
+en dicho punto $y^{'}_{n+1}$. A partir de los valores de la derivada al inicio
+y final del intervalo se obtiene la media aritmética de la pendiente de la
+función. Este valor mejorado para la pendiente es el realmente utilizado para
+obtener el siguiente paso de la función.
+\begin{equation*}
+y_{n+1} = y_n + h\frac{y^{'}_{n+1} + y^{'}_{n}}{2}
+\end{equation*}
 
+En la tabla \ref{tab:resultados} se representan los valores anteriores para cada
+paso de la integración hasta $t=0.5$ con $h=dt=0.1$, utilizando la condición
+inicial $y(t = 0) = 1$ para comenzar el proceso. En la figura \ref{fig:grafica}
+se representa la función $y(t)$ para valores $ 0 \leq t \leq 20$.
+Como puede observarse median inspección visual, el periodo de la función es
+apróximanadamente 6 radianes.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+ t & $y(t)$ & $y^{'}_n(t)$ & $hy^{'}_n(t)$ & $y_{n+1}$ & $y^{'}_{n+1}(t+h)$ & $\frac{y^{'}_{n+1}(t+h) + y^{'}_{n}(t)}{2}$
+ & $h \cdot p_{m}$ & $y(t+h)$\\
+ \hline\hline
+0.0  &  1.0000  &  0.5403  &  0.0540  & 1.0540  &  0.4267   & 0.4835   &  0.0483  &  1.0483\\ \hline
+0.1  &  1.0483  &  0.4298  &  0.0430  &  1.0913 &   0.3010  &  0.3654  &   0.0365 &   1.0849\\ \hline
+0.2  &  1.0849  &  0.3060  &  0.0306  &  1.1155 &   0.1725  &  0.2393  &   0.0239 &   1.1088\\ \hline
+0.3  &  1.1088  &  0.1788  &  0.0179  &  1.1267 &   0.0497  &  0.1142  &  0.0114  &  1.1202\\ \hline
+0.4  &  1.1202  &  0.0566  &  0.0057  &  1.1259 &   -0.0620 &  -0.0027 &  -0.0003 &  1.1200\\ \hline
+0.5  &  1.1200  &  -0.0551 &  -0.0055 &  1.1145 &   -0.1596 &  -0.1073 &  -0.0107 &  1.1092\\ \hline
+
+\end{tabular}
+\end{center}
+\caption{Resultados intermedios del método de integración de Euler modificado.}
+\label{tab:resultados}
+\end{table}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{grafica}
+\caption{Representación gráfica de la función $y(t)$}
+\label{fig:grafica}
+\end{figure}
 \end{document}
