@@ -270,6 +270,53 @@ $e_r=0.177390$
 \end{itemize} 
 
 \section*{Problema 3}
+Como en la aproximación de Padé pedida el grado del numerador y el denominador
+es 2, se necesita calcular primeramente la aproximación de McLaurin de grado
+$N = m + n = 4$. Así,
+\begin{equation*}
+ f_{M4}(x) = 2 + x^2 + \frac{x^4}{12}
+\end{equation*} 
+
+Por otro lado, la aproximación de Padé se construye como
+\begin{equation*}
+R_4(x) = \frac{a_0 + a_1x + a_2x^2}{1 + b_1x + b_2x^2}
+\end{equation*} 
+
+Se define la diferencia de las dos ecuaciones anteriores
+\begin{equation*}
+f_{M4}(x) - R_4(x) = (2 + x^2 + \frac{x^4}{12}) -
+                    \frac{a_0 + a_1x + a_2x^2}{1 + b_1x + b_2x^2} =
+                    \frac{(2 + x^2 + \frac{x^4}{12})(1 + b_1x + b_2x^2) - (a_0 + a_1x + a_2x^2)}{1 + b_1x + b_2x^2}
+\end{equation*}
+
+Es necesario seleccionar las constantes $a_0, a_1, a_2, b_1, b_2$ para que se
+cumpla
+\begin{equation*}
+ f_{M4}^{(k)}(0) - R_4^{(k)}(0) = 0, ~~~para~~~k = 0, 1, ..., N
+\end{equation*}
+
+La condición anterior es equivalente a que en la función resta se anulen todos
+los coeficientes para menores que $N=4$. Se obtienen las siguientes ecuaciones
+\begin{align*}
+2 - a_0 = 0\\
+2b_1 - a_1 = 0\\
+2b_2 + 1 - a_2 = 0\\
+b_1 = 0\\
+b_2 = 0
+\end{align*}
+de donde se obtiene que $a_0 = 2, a_1 = 0, b_1 = 0, b_2 = 0$ y, por lo tanto,
+la aproximación de Padé pedida es
+\begin{equation*}
+R_4(x) = \frac{2 + x^2}{1}
+\end{equation*}
+
+El valor analítico de la función $f(x)$, y los errores relativos de las
+aproximaciones son
+\begin{align*}
+f(0.1) = e^{0.1} + e^{-0.1} = 2.010008\\
+f_{M4}(x) = 2 + 0.1^2 + \frac{0.1^4}{12} = 2.010008~~~e_r=0\\
+R_4(x) = 2 + 0.1^2 = 2.010000~~~e_r = 4 \cdot 10^{-6}
+\end{align*}
 
 \section*{Problema 4}
 
